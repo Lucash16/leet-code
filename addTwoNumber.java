@@ -11,9 +11,9 @@ class ListNode {
 public class addTwoNumber {
 
     public static void main(String[] args) {
-        ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(9)));
-        ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4, new ListNode(9))));
-        addTwoNumbers(l1, l2);
+        ListNode l1 = new ListNode(9, new ListNode(4, new ListNode(9)));
+        ListNode l2 = new ListNode(9, new ListNode(6, new ListNode(4)));
+        addTwoNumbersGPT(l1, l2);
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -39,5 +39,33 @@ public class addTwoNumber {
             atual = atual.next;
         }
         return resultado;
+    }
+
+/*
+    Matemática básica foi crucial neste código
+    Podemos ver na linha do int soma e carry, ele faz a soma basica dos numeros por cada casa decimal.
+    Quando a soma dos elementos passa de 9 ele guarda  somente a ultima casa decimal, que é o que importa
+    para se gravar no ListCode, e a primeira casa decimal ele guarda no carry, sendo que esse valor guardado no carry
+    vai somando com os proximos elementos, que a soma vire menor que 10 caso contrário ele será o ultimo elemente do ListNode
+
+ */
+
+    public static ListNode addTwoNumbersGPT(ListNode l1, ListNode l2) {
+        int carry = 0;
+        ListNode dummy = new ListNode();
+        ListNode atual = dummy;
+
+        while (l1 != null || l2 != null || carry != 0) {
+            int soma = (l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + carry;
+            carry = soma / 10;
+
+            atual.next = new ListNode(soma % 10);
+            atual = atual.next;
+
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+
+        return dummy.next;
     }
 }
