@@ -1,3 +1,5 @@
+package random;
+
 import java.util.Arrays;
 
 public class MedianofTwoSortedArrays {

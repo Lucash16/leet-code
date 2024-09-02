@@ -1,3 +1,5 @@
+package random;
+
 public class LengthOfLongestSubstring {
 
     public static void main(String[] args) {
